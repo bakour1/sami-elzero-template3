@@ -1,0 +1,42 @@
+.parent-gallery {
+  display: grid;
+
+  .box-img {
+    @include prefixer(aspect-ratio, 1/1, webkit moz o);
+    border: 20px solid $clrWhite;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      @include prefixer (transition, 0.3s ease-in-out, webkit moz o ms);
+    }
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      background-color: $clrWhite;
+      opacity: 0.6;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      @include prefixer (transform, translate(-50%, -50%), webkit moz o ms);
+    }
+
+    &:hover {
+      &::after {
+        opacity: 0;
+        width: 300%;
+        height: 300%;
+        @include transition(all 0.5s ease-in-out);
+      }
+
+      img {
+        @include prefixer (transform, rotate(5deg) scale(1.15), width moz o ms);
+      }
+    }
+  }
+}

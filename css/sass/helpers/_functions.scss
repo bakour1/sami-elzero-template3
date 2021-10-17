@@ -1,0 +1,36 @@
+@mixin flex ($dir, $pos, $justify, $gap) {
+  display: flex;
+
+  @if $dir==0 {
+    $flex-direction: null;
+  }
+
+  @else {
+    flex-direction: $dir;
+  }
+
+  @if $pos==0 {
+    $align-items: null;
+  }
+
+  @else {
+    align-items: $pos;
+  }
+
+  @if $justify==0 {
+    $justify-content: null;
+  }
+
+  @else {
+    justify-content: $justify;
+  }
+
+  @if $gap==0 {
+    $gap: null;
+  }
+
+  @else {
+    gap: $gap;
+  }
+
+}

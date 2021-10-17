@@ -1,0 +1,24 @@
+.toggle-arrow {
+  position: absolute;
+  color: $clrBlue;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  @include prefixer (animation, animateArrow 1s ease-in-out infinite alternate-reverse, webkit moz);
+  cursor: pointer
+}
+
+@include keyFrame (animateArrow) {
+  25% {
+    @include prefixer (transform, translate(-50%, -25%), webkit moz o);
+  }
+
+  50% {
+    @include prefixer (transform, translate(-50%, -75%), webkit moz o);
+  }
+
+  100% {
+    @include prefixer (transform, translate(-50%, -50%), webkit moz o);
+  }
+}

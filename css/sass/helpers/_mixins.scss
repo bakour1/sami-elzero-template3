@@ -1,0 +1,134 @@
+// prefixer
+@mixin prefixer($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  #{$property} : $value;
+}
+
+// grid-property
+@mixin grid ($fill, $min, $max, $gap) {
+  display: grid;
+  grid-template-columns: repeat(auto-#{fill}, minmax(#{$min}, #{$max}));
+  gap: $gap;
+}
+
+// flex-center
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// animation prefix
+@mixin keyFrame($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+// learn 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+
+}
+
+// overlay
+@mixin overlay {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+//  stars rate one
+@mixin oneStar {
+  :nth-child(n + 2):nth-child(-n + 6) {
+    display: none;
+  }
+}
+
+//  stars rate two
+@mixin twoStar {
+  :nth-child(n + 3):nth-child(-n + 7) {
+    display: none;
+  }
+}
+
+//  stars rate tree
+@mixin threeStar {
+  :nth-child(n + 4):nth-child(-n + 8) {
+    display: none;
+  }
+}
+
+//  stars rate four
+@mixin fourStar {
+  :nth-child(n + 5):nth-child(-n + 9) {
+    display: none;
+  }
+}
+
+//  stars rate five
+@mixin fiveStar {
+  :nth-child(n + 6):nth-child(-n + 10) {
+    display: none;
+  }
+}
+
+// progress
+@mixin html {
+  .html-skill {
+    .wrapper-prog {
+      span.prog-line {
+        width: 80% !important;
+      }
+    }
+  }
+}
+
+@mixin css {
+  .css-skill {
+    .wrapper-prog {
+      span.prog-line {
+        width: 85% !important;
+      }
+    }
+  }
+}
+
+@mixin js {
+  .js-skill {
+    .wrapper-prog {
+      span.prog-line {
+        width: 70% !important;
+      }
+    }
+  }
+}
+
+@mixin py {
+  .py-skill {
+    .wrapper-prog {
+      span.prog-line {
+        width: 80% !important;
+      }
+    }
+  }
+}

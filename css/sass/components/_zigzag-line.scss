@@ -1,0 +1,17 @@
+.zig-zag {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  display: block;
+  background:
+    linear-gradient(-45deg,
+      transparent 33.33%, $clrMainGrey 33.33%,
+      $clrMainGrey 66.666%, transparent 66.666%),
+    linear-gradient(45deg,
+      transparent 33.33%, $clrMainGrey 33.33%,
+      $clrMainGrey 66.666%, transparent 66.666%);
+  background-size: 30px 60px;
+}

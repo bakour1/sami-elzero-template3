@@ -1,0 +1,1303 @@
+// start landing
+.landing {
+  background: linear-gradient(-6deg, #fff 21%, $clrMainGrey 21%);
+  height: 90vh;
+  position: relative;
+
+  .parent {
+    padding-top: 160px;
+    position: relative;
+
+    .text {
+      width: 41%;
+      line-height: 1.7;
+
+      h2 {
+        font: {
+          size: 36px;
+          weight: 700;
+        }
+      }
+
+      p {
+        font-size: 24px;
+        padding-right: 40px;
+      }
+
+      @media #{$maxSmall} {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .box-img {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      @include prefixer (transform, translateY(-20%), webkit moz o);
+      @include prefixer (animation, animateImg 3s linear infinite forwards, webkit);
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      @media #{$maxSmall} {
+        display: none
+      }
+    }
+  }
+}
+
+@include keyFrame (animateImg) {
+  25% {
+    @include prefixer (transform, translateY(-23%), webkit moz o);
+  }
+
+  75% {
+    @include prefixer (transform, translateY(-17%), webkit moz o);
+  }
+
+  100% {
+    @include prefixer (transform, translateY(-20%), webkit moz o);
+  }
+}
+
+// end landing
+// start articles
+.articles {
+  padding: $paddingSection;
+  position: relative;
+
+  &::after {
+    @extend .zig-zag;
+    top: unset;
+    bottom: 0;
+  }
+
+
+  .parent-grid {
+    @include grid (fill, $boxGrid-4, 1fr, $gapGrid);
+
+    .card {
+      @include transition (0.4s ease-in-out);
+
+      &:hover {
+        margin-top: -10px;
+
+        i {
+          @include prefixer (animation, animatIcon .7s linear infinite forwards, webkit moz);
+        }
+      }
+
+
+      .box-img {
+        @include prefixer(aspect-ratio, 51/32, webkit moz o);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .caption-card {
+        box-shadow: 0 0 15px 0 #00000023;
+
+        .title-caption {
+          font-size: 18px;
+          padding: 20px 20px 10px;
+        }
+
+        .text-caption {
+          padding: 0 20px 20px;
+          line-height: 1.6;
+        }
+
+        .read-more {
+          font-weight: 700;
+          color: $clrBlue;
+          padding: 20px;
+          border-top: 2px solid $clrMainGrey;
+          @include flex(0, center, space-between, 0);
+
+          a {
+            color: inherit;
+            text-decoration: none;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include keyFrame (animatIcon) {
+  to {
+    margin-right: -10px;
+  }
+}
+
+// end articles
+// start gallery
+.gallery {
+  background-color: $clrMainGrey;
+  padding: $paddingSection;
+
+  .parent-grid {
+    @extend .parent-gallery;
+    @include grid (fill, $boxGrid-3, 1fr, $gapGrid);
+  }
+}
+
+// end gallery
+// start features
+.features {
+  padding: $paddingSection;
+  padding-bottom: 120px;
+  position: relative;
+
+  &::after {
+    @extend .zig-zag;
+    top: unset;
+    bottom: 0;
+  }
+
+  .parent-grid {
+    @include grid (fill, $boxGrid-3, 1fr, $gapGrid);
+
+    .card {
+      box-shadow: 0 0 0 1px #00000023;
+
+      .box-img {
+        overflow: hidden;
+        position: relative;
+        @include prefixer(aspect-ratio, 1.060, webkit moz o);
+
+        &::before {
+          @include overlay;
+          background-color: $clrRed;
+          opacity: 0.45;
+        }
+
+        &::after {
+          @include overlay;
+          background-color: #fff;
+          top: 49.9%;
+          left: 0%;
+          transform-origin: center right;
+          transform: skewY(-20deg);
+          @include transition(.4s linear);
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .caption-card {
+        text-align: center;
+        padding-bottom: 20px;
+
+        .title-caption {
+          font-size: 28px;
+          width: fit-content;
+          margin: 0 auto 30px;
+          padding-bottom: 10px;
+          position: relative;
+
+          &::after {
+            content: '';
+            background-color: $clrRed;
+            width: 80%;
+            height: 3px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            @include prefixer (transform, translateX(-50%), width moz o ms);
+          }
+        }
+
+        .text-caption {
+          padding: 0 40px 20px;
+          line-height: 1.6;
+
+          font: {
+            weight: 600;
+            size: 16px;
+          }
+        }
+
+        .read-more {
+          display: block;
+          width: fit-content;
+          padding: 10px 16px;
+          margin: 10px auto 0;
+          color: $clrRed;
+          border: 2.5px solid $clrRed;
+          border-radius: 5px;
+          position: relative;
+          @include transition(.4s linear);
+
+          font: {
+            weight: 700;
+            size: 18px;
+          }
+
+          text: {
+            decoration: none;
+            transform: capitalize;
+          }
+
+
+          &::before {
+            @include overlay;
+            width: 0%;
+            background-color: $clrRed;
+            z-index: -1;
+            @include transition(.4s linear);
+          }
+
+          &:hover {
+            color: $clrWhite !important;
+          }
+
+          &:hover::before {
+            width: 100%;
+          }
+        }
+      }
+
+      &:hover {
+        .box-img::after {
+          transform: rotate(-53deg) skewX(20deg) scaleY(2.1);
+        }
+      }
+    }
+  }
+}
+
+// end features
+// start testimonials
+.testimonials {
+  padding: $paddingSection;
+  background-color: $clrMainGrey;
+
+  .parent-grid {
+    @include grid (fill, $boxGrid-3, 1fr, $gapGrid);
+
+    .card-1,
+    .card-2,
+    .card-3 {
+      .rate {
+        @include fourStar;
+      }
+    }
+
+    .card-4 {
+      .rate {
+        @include fiveStar;
+      }
+    }
+
+    .card-5,
+    .card-6 {
+      .rate {
+        @include threeStar;
+      }
+    }
+
+    .card {
+      background-color: $clrWhite;
+      padding: 20px;
+      @include flex(column, 0, 0, 15px);
+      border-radius: 7px;
+      position: relative;
+
+      .box-img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 90px;
+        height: 90px;
+        border: 10px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: $clrMainGrey;
+        overflow: hidden;
+        @include prefixer (transform, translate(10px, -40%), webkit moz o ms);
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .name {
+        font: {
+          size: 18px;
+          weight: 700;
+        }
+      }
+
+      .jop {
+        color: $clrGreyDark;
+
+        font: {
+          size: 16px;
+          weight: 500;
+        }
+      }
+
+      .rate {
+        @include flex(0, 0, 0, 5px);
+        color: $clrGold;
+      }
+
+      .text {
+        color: $clrGreyDark;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+// end testimonials GreyDark ------------------------------------------------------------------
+// start team members
+.team-members {
+  padding: $paddingSection;
+  position: relative;
+
+  &::after {
+    @extend .zig-zag;
+    top: unset;
+    bottom: 0;
+  }
+
+  .parent-grid {
+    padding-inline-start: 55px;
+    @include grid (fill, $boxGrid-3, 1fr, 90px);
+    justify-content: space-between;
+
+    .card {
+      background-color: $clrMainGrey;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+
+      &::after {
+        @include overlay;
+        width: 0;
+        left: unset;
+        right: 0;
+        background-color: #ffffff44;
+        border-radius: 10px;
+        @include transition (0.4s ease-in-out);
+      }
+
+      .box-img {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        position: absolute;
+        z-index: 99;
+        top: 50px;
+        right: 55px;
+        @include prefixer(aspect-ratio, 1/1, webkit moz o ms);
+
+        img {
+          width: 100%;
+          height: 100%;
+          @include transition (0.3s .1s ease-in-out);
+        }
+      }
+
+      .social-icon {
+        padding: 120px 0 90px;
+        width: 100%;
+        @include flex(column, flex-end, 0, 30px);
+
+        a {
+          text-decoration: none;
+          color: $clrGreyMedium;
+        }
+      }
+
+      .title-card {
+        color: $clrBlue;
+        font-size: 20px;
+        margin-bottom: 10px;
+        @include transition (0.3s .1s ease-in-out);
+      }
+
+      &:hover {
+        color: $clrGreyMedium !important;
+
+        &::after {
+          width: 100%;
+        }
+
+        img {
+          filter: grayscale(1);
+        }
+
+        .title-card {
+          color: $clrGreyMedium;
+        }
+      }
+    }
+  }
+}
+
+// end team members
+// start services
+.services {
+  background-color: $clrMainGrey;
+  padding: $paddingSection;
+
+  .parent-grid {
+    @include grid (fill, $boxGrid-3, 1fr, 30px);
+
+    .card {
+      cursor: pointer;
+      counter-increment: member-counter;
+      background-color: $clrWhite;
+      position: relative;
+      box-shadow: 2px 2px 10px 0 #00000031;
+      @include transition (0.3s .1s ease-in-out);
+
+      &::after {
+        content: '';
+        background-color: $clrBlue;
+        width: 0;
+        height: 4px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        @include transition (0.3s .1s ease-in-out);
+      }
+
+      &:hover {
+        margin-top: -10px;
+        margin-bottom: 10px;
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+      .content-card {
+        padding: 40px;
+        @include flex(column, center, 0, $gapFlex);
+
+        i {
+          font-size: 56px;
+          color: $clrGreyLight;
+        }
+
+        a {
+          text-decoration: none;
+          color: $clrBlue;
+
+          font: {
+            size: 24px;
+            weight: 700;
+          }
+        }
+      }
+
+      .footer-card {
+        background-color: $bgFooterCard;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "0"counter(member-counter);
+          background-color: $clrBlue;
+          color: $clrWhite;
+          width: 50px;
+          height: 100%;
+
+          font: {
+            size: 26px;
+            weight: 700;
+          }
+
+          @include flex(0, center, flex-end, 10px);
+          position: absolute;
+          z-index: 99;
+          left: 0;
+          top: 0;
+        }
+
+        &::after {
+          content: '';
+          background-color: $clrBlue;
+          width: 55px;
+          height: 100%;
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          box-shadow: 50px 0 0 0 $clrGreyLight;
+          transform-origin: right bottom;
+          @include prefixer (transform, skewX(-30deg), webkit moz o ms)
+        }
+
+        a {
+          color: $clrBlue;
+          display: block;
+          padding: 15px 10px;
+          font-weight: 600;
+
+          text: {
+            align: end;
+            decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// end services
+// start our-skills
+.our-skills {
+  background-color: $clrWhite;
+  padding: $paddingSection;
+  position: relative;
+
+  &::after {
+    @extend .zig-zag;
+    top: unset;
+    bottom: 0;
+  }
+
+  .parent-flex {
+    @include flex(0, 0, space-between, 0);
+
+    .box-img {
+      flex: 0.45;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      @media #{$maxSmall} {
+        display: none
+      }
+    }
+
+    .skills {
+      flex: 0.55;
+      @include flex(column, 0, 0, $gapFlex);
+
+      .contain-skill {
+        @include flex(column, 0, 0, $gapFlex);
+
+        .title-skill {
+          @include flex(0, 0, space-between, 0);
+          display: flex;
+          justify-content: space-between;
+
+          .prog-num {
+            display: block;
+            border: 1px solid $clrBlue;
+            color: $clrBlue;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2.5px;
+          }
+        }
+
+        .wrapper-prog {
+          height: 30px;
+          width: 100%;
+          background-color: $clrMainGrey;
+          position: relative;
+
+          .prog-line {
+            width: 0%;
+            height: 100%;
+            background-color: $clrBlue;
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include transition (0.7s ease-in-out);
+          }
+        }
+      }
+
+      @media #{$maxSmall} {
+        flex: 1;
+      }
+    }
+  }
+
+  &:hover {
+    @include html;
+    @include css;
+    @include js;
+    @include py;
+  }
+}
+
+// end our-skills
+// start how it works
+.how-it-works {
+  background-color: $clrMainGrey;
+  padding: $paddingSection;
+
+  .parent-flex {
+    display: flex;
+
+    .box-img {
+      flex: 1;
+
+      img {
+        width: 80%;
+        height: 80%;
+      }
+    }
+
+    .contain {
+      flex: 1;
+      @include flex(column, 0, 0, $gapFlex);
+
+      .box {
+        background-color: #f7f5f6;
+        box-shadow: 0 0 0 2px $clrWhite;
+        padding: 30px 35px;
+        @include flex(0, center, 0, 30px);
+        position: relative;
+        z-index: 1;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 0;
+          background-color: $clrMainGrey;
+          position: absolute;
+          z-index: -1;
+          top: 50%;
+          left: 50%;
+          @include prefixer (transform, translate(-50%, -50%), webkit moz o ms);
+          @include transition (0.4s ease-in-out);
+        }
+
+        &:hover::after {
+          width: 100%;
+          height: 100%;
+        }
+
+        img {
+          width: 60px;
+        }
+
+        .text {
+          padding-right: 10px;
+
+          .title-box {
+            margin-bottom: 10px;
+            font-size: 20px;
+          }
+
+          .txt {
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+
+    @media #{$maxSmall} {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+// end how it works
+// start latest events
+.latest-event {
+  padding: $paddingSection;
+  position: relative;
+
+  &::after {
+    @extend .zig-zag;
+    top: unset;
+    bottom: 0;
+  }
+
+  .contain {
+    .parent-flex {
+      display: flex;
+      align-items: center;
+
+      .box-img {
+        flex-basis: 42%;
+        text-align: right;
+
+        img {
+          width: 70%;
+          height: 70%;
+          margin-right: 20px;
+        }
+      }
+
+      .content {
+        text-align: center;
+        flex: 1;
+
+        .date {
+          @include flex-center;
+          gap: 10px;
+
+          .box-num-info {
+            width: 60px;
+            @include flex(column, center, 0, 0);
+            border: 1px solid $clrMainGrey;
+            @include transition(0.4s ease-in-out);
+
+
+            .num {
+              font: {
+                size: 26px;
+                weight: 600;
+              }
+
+              color: $clrBlue;
+              width: 100%;
+              @include prefixer(aspect-ratio, 1, webkit moz o ms);
+              @include flex-center;
+              border-bottom: 2px solid $clrMainGrey;
+              @include transition(0.4s ease-in-out);
+            }
+
+            .info {
+              font-size: 14px;
+              padding: 8px;
+            }
+
+            &:hover {
+              border-color: $clrBlue;
+
+              .num {
+                border-color: $clrBlue;
+              }
+            }
+          }
+
+        }
+
+        .title-caption {
+          margin-block: 30px;
+
+          font: {
+            size: 40px;
+          }
+        }
+
+        .text-caption {
+          font-size: 18px;
+          line-height: 1.6;
+          width: 87%;
+          margin-inline: auto;
+          color: $clrGreyMedium;
+        }
+      }
+
+      @media #{$maxSmall} {
+        flex-direction: column;
+      }
+    }
+
+    .subscribe {
+      background-color: $clrMainGrey;
+      width: 600px;
+      padding: 25px;
+      margin: 100px auto 20px;
+      border-radius: 100px;
+      @include flex(0, 0, 0, $gapFlex);
+
+
+      input[type="email"] {
+        flex: 1;
+        padding: 15px;
+        outline: none;
+        border: none;
+        border-radius: 50px;
+
+        &:focus {
+          &::placeholder {
+            visibility: hidden;
+          }
+        }
+      }
+
+      input[type="submit"] {
+        padding: 15px 20px;
+        color: $clrWhite;
+        background-color: $clrBlue;
+        outline: none;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+
+      @media #{$maxSmall} {
+        width: 100%;
+        flex-direction: column;
+        border-radius: 8px;
+
+        input[type="email"],
+        input[type="submit"] {
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+// end latest events
+.pricing-plans {
+  background-color: $clrMainGrey;
+  padding: $paddingSection;
+  position: relative;
+
+  .box-img-landing:nth-child(1) {
+    position: absolute;
+    top: 20%;
+    right: 0;
+
+  }
+
+  .box-img-landing:nth-child(2) {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+  }
+
+  .box-img>img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .parent-grid {
+    display: grid;
+    @include grid (fill, $boxGrid-3, 1fr, $gapGrid);
+
+    .most-popular {
+      margin-top: -20px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      @include flex(column, center, 0, 0);
+      box-shadow: 0 3px 10px 0 #00000044;
+      position: relative;
+      z-index: 1;
+
+      &::before,
+      &::after {
+        content: '';
+        width: 0%;
+        height: 50%;
+        background-color: $bgFooterCard;
+        position: absolute;
+        z-index: -1;
+        @include transition (0.4s ease-in-out);
+      }
+
+      &::before {
+        top: 0%;
+        right: 0%;
+      }
+
+      &::after {
+        bottom: 0%;
+        left: 0%;
+      }
+
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+
+
+      .most-popular-logo {
+        padding: 8px 30px 10px 10px;
+        color: $clrWhite;
+        background-color: $clrBlue;
+        position: absolute;
+        right: -95px;
+        top: 0;
+        transform-origin: left top;
+        transform: rotate(90deg);
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 0;
+          border: 18px solid transparent;
+          position: absolute;
+          right: 0;
+          top: 0%;
+          border-right-color: $clrWhite;
+        }
+      }
+
+      .header-card {
+        @include flex(column, center, 0, 0);
+
+        .title {
+          margin-top: 30px;
+
+          font: {
+            size: 22px;
+            weight: 700;
+          }
+        }
+
+        .box-img {
+          margin: 30px auto;
+
+          img {
+            width: 80px;
+            height: auto;
+          }
+        }
+
+        .price {
+          color: $clrBlue;
+
+          font: {
+            size: 55px;
+            weight: 700;
+          }
+        }
+      }
+
+      .content-card {
+        width: 100%;
+        margin-block: 20px;
+
+        li {
+          padding: 15px;
+          border-top: 1.5px solid $clrMainGrey;
+
+          i {
+            color: $clrBlue;
+            margin-right: 5px;
+          }
+        }
+      }
+
+      .choose-card {
+        color: $clrBlue;
+        border: 2px solid $clrBlue;
+        text-decoration: none;
+        padding: 15px;
+        font-weight: 700;
+        border-radius: 8px;
+        display: block;
+        margin-bottom: 40px;
+
+        &:hover {
+          color: $clrWhite;
+          background-color: $clrBlue;
+        }
+      }
+    }
+  }
+}
+
+// start top video
+.top-video {
+  padding: $paddingSection;
+
+  .parent-grid {
+    border: 2px solid $clrMainGrey;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+
+    .side-ctrl {
+
+      background-color: $bgHeaderVideo;
+
+      .title-ctrl {
+        color: $clrBlue;
+        padding: 20px 15px;
+      }
+
+      .content-ctrl {
+        @include flex(column, 0, 0, 1px);
+
+        li {
+          background-color: $clrWhite;
+          padding: 15px;
+
+          font: {
+            size: 15px;
+            weight: 600;
+          }
+
+          h4.notfy {
+            font-weight: inherit;
+            margin-bottom: 10px;
+          }
+
+          span.time {
+            color: $clrGreyMedium;
+          }
+
+          &:hover {
+            cursor: pointer;;
+            background-color: $clrMainGrey;
+          }
+        }
+      }
+    }
+
+    .screen {
+      padding: 8px;
+      background-color: $clrMainGrey;
+      @include flex(column, 0, space-between, 0);
+
+      .box-video {
+        width: 100%;
+
+        @include prefixer (aspect-ratio, 82/45, webkit moz o ms);
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .footer-notfy {
+        background-color: $clrWhite;
+
+        p {
+          padding: 20px 15px;
+        }
+      }
+    }
+
+    @media #{$maxSmall} {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// end top video
+// start our awesome state
+.awesome-state {
+  .header-section {
+    background-color: rgba($clrMainGrey, .9);
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background: url(../../../images/landing-awesome-state.png) no-repeat bottom left;
+      background-size: cover;
+      filter: grayscale(1);
+      position: absolute;
+      z-index: -1;
+    }
+
+    .title-header {
+      text-align: center;
+      padding-top: 60px;
+      font-size: 36px;
+    }
+
+    .cards-header {
+      margin: 50px auto 0;
+      @include grid (fill, $boxGrid-4, 1fr, 15px);
+
+      .card {
+        background-color: $clrWhite;
+        padding-block: 20px;
+        @include flex(column, center, 0, 15px);
+        margin-bottom: 50px;
+        position: relative;
+
+        &::before,
+        &::after {
+          content: '';
+          background-color: $clrBlue;
+          width: 4px;
+          height: 0;
+          position: absolute;
+          @include transition(0.4s ease-in-out);
+        }
+
+        &::before {
+          top: 0;
+          right: 0;
+        }
+
+        &::after {
+          bottom: 0;
+          left: 0;
+        }
+
+        i {
+          color: $clrBlack;
+          font-size: 34px;
+        }
+
+        .num {
+          font-size: 44px;
+          font-weight: 700;
+        }
+
+        .info {
+          color: $clrBlue;
+          font-style: italic;
+          font-weight: 600;
+        }
+
+        &:hover {
+
+          &::before,
+          &::after {
+            height: 100%;
+          }
+        }
+      }
+
+      .card:nth-child(odd) {
+
+        &::before,
+        &::after {
+          background-color: $clrGreyLight;
+        }
+      }
+    }
+  }
+
+  .contain-section {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .notify {
+      background-color: rgba($clrBlue, .96);
+      color: $clrWhite;
+      padding-block: 50px;
+      @include flex-center;
+      flex-direction: column;
+      gap: 30px;
+      position: relative;
+      overflow: hidden;
+
+      .box-animat-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+
+        img:nth-child(2) {
+          opacity: 1;
+          @include prefixer(animation, animateBg 5s ease-in-out alternate infinite, webkit moz);
+        }
+
+        @include keyFrame (animateBg) {
+          66% {
+            opacity: 0;
+          }
+
+          100% {
+            opacity: 0;
+          }
+        }
+      }
+
+      h3 {
+        font: {
+          size: 34px;
+        }
+      }
+
+      p {
+        max-width: 58%;
+        line-height: 1.6;
+      }
+
+      img {
+        width: 32%;
+      }
+    }
+
+    .request-discount {
+      padding-block: 50px;
+      @include flex(column, center, center, $gapFlex);
+
+      h3 {
+        font-size: 37px;
+      }
+
+      .request-form {
+        width: 40%;
+        @include flex(column, center, 0, $gapFlex);
+
+        input,
+        textarea {
+          width: 100%;
+          border: none;
+          outline: none;
+          background-color: $clrMainGrey;
+          padding: 10px;
+          border-bottom: 2px solid $clrGreyLight;
+
+          &:focus {
+            &::placeholder {
+              visibility: hidden;
+            }
+          }
+        }
+
+        input[type="submit"] {
+          background-color: $clrBlue;
+          color: $clrWhite;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        @media #{$maxMobile} {
+          width: 100%;
+          padding: 15px;
+        }
+      }
+    }
+
+    @media #{$maxSmall} {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// end our awesome state

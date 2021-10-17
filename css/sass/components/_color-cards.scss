@@ -1,0 +1,72 @@
+// card-1 
+.card-1 {
+  $colorFeatures: $clrRed !important;
+
+  .box-img::before {
+    background-color: $colorFeatures;
+  }
+
+  .caption-card {
+    .title-caption::after {
+      background-color: $colorFeatures;
+    }
+
+    .read-more {
+      color: $colorFeatures;
+      border-color: $colorFeatures;
+
+      &::before {
+        background-color: $colorFeatures;
+      }
+    }
+  }
+}
+
+// card-2 
+.card-2 {
+  $colorFeatures: $clrGreen !important;
+
+  .box-img::before {
+    background-color: $colorFeatures;
+  }
+
+  .caption-card {
+    .title-caption::after {
+      background-color: $colorFeatures;
+    }
+
+    .read-more {
+      color: $colorFeatures;
+      border-color: $colorFeatures;
+
+      &::before {
+        background-color: $colorFeatures;
+      }
+    }
+  }
+
+}
+
+// card-3 
+.card-3 {
+  $clrBlue: $clrBlue !important;
+
+  .box-img::before {
+    background-color: $clrBlue;
+  }
+
+  .caption-card {
+    .title-caption::after {
+      background-color: $clrBlue;
+    }
+
+    .read-more {
+      color: $clrBlue;
+      border-color: $clrBlue;
+
+      &::before {
+        background-color: $clrBlue;
+      }
+    }
+  }
+}
